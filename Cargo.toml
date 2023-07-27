@@ -7,3 +7,15 @@ edition = "2021"
 
 [dependencies]
 polars = { version = "0.31.1", features = ["lazy", "streaming"] }
+connectorx = { version = "0.3.1", features = [
+    "dst_arrow",
+    "dst_arrow2",
+    "src_mysql",
+] }
+bitvec = "0.22.3"
+
+[patch.crates-io]
+# temporary solution to funty@1.2.0 being yanked, we should propose bitvec upgrade to upstream filecoin crates
+# tracking issue: https://github.com/bitvecto-rs/funty/issues/7
+# bitvec v0.22.0 depends on funty = "~1.2 which has been yanked #1283 
+funty = { git = "https://github.com/bitvecto-rs/funty/", rev = "7ef0d890fbcd8b3def1635ac1a877fc298488446" }
